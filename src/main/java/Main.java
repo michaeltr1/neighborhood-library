@@ -48,8 +48,19 @@ public class Main {
                     //pulling data from ids
                     int bookChoice = read.nextInt();
 
+                    System.out.println("Pick your book choice inputs 1-20");
 
-
-
+                    if (bookChoice != 0) {
+                        System.out.println("Enter your Name:");
+                        String name = read.next();
+                        bookList[bookChoice - 1].checkOutBook(name);
+                    }
+                    else if (homeScreen == 2){
+                        //show books that are checked out
+                        else if (homeScreen == 2) {
+                            // Show the checked out books
+                        for (int i = 0; i < bookList.length; i++) {
+                        if (bookList[i].isCheckedOut() == true) {
+                        System.out.println(bookList[i].getId() + " " + bookList[i].getIsbn() + " " + bookList[i].getTitle() + " " + bookList[i].getCheckedOutTo());
                     }
                 }

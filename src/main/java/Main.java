@@ -32,26 +32,24 @@ public class Main {
         Scanner read = new Scanner(System.in);
         int homeScreen;
 
-        do{
-            System.out.println("Welcome to the Home Screen");
-            System.out.println(" 1 - if you would like to check out a book!");
-            System.out.println(" 2 - Leave ");
-            System.out.println("Enter Input for book here (1 or 2):");
+        do {
+            System.out.println("Welcome to the Home Screen Input #1-3 to Continue ");
+            System.out.println(" 1 - if you would like to check out a book that are available!");
+            System.out.println(" 2 - Show Checked out Books ");
+            System.out.println(" 3 - Exit Home Screen");
             homeScreen = read.nextInt();
+            //Pulling up the Lists of Books Im P Sure
             if (homeScreen == 1) {
-                for (int i = 0; homeScreen; i++){
-                    System.out.println();
-            }
-
-        }
-
-
-
-
+                for (int i = 0; i < bookList.length; i++) {
+                    if (bookList[i].isCheckedOut() == false) {
+                        System.out.println(bookList[i].getId() + " " + bookList[i].getIsbn() + " " + bookList[i].getTitle());
+                    }}}}
+                    while (homeScreen != 3);
+                    //pulling data from ids
+                    int bookChoice = read.nextInt();
 
 
-        }
 
-    }
-    }
 
+                    }
+                }

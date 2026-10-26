@@ -34,33 +34,61 @@ public class Main {
 
         do {
             System.out.println("Welcome to the Home Screen Input #1-3 to Continue ");
-            System.out.println(" 1 - if you would like to check out a book that are available!");
+            System.out.println(" 1 - Check out books that are available here!");
             System.out.println(" 2 - Show Checked out Books ");
             System.out.println(" 3 - Exit Home Screen");
             homeScreen = read.nextInt();
-            //Pulling up the Lists of Books Im P Sure
+
+            //Pulling up the Lists of Books I'm P Sure
             if (homeScreen == 1) {
                 for (int i = 0; i < bookList.length; i++) {
                     if (bookList[i].isCheckedOut() == false) {
                         System.out.println(bookList[i].getId() + " " + bookList[i].getIsbn() + " " + bookList[i].getTitle());
-                    }}}}
-                    while (homeScreen != 3);
-                    //pulling data from ids
-                    int bookChoice = read.nextInt();
+                    }
+                }
 
-                    System.out.println("Pick your book choice inputs 1-20");
+                System.out.println("Pick your book choice inputs 1-20");
+                int bookChoice = read.nextInt();
 
-                    if (bookChoice != 0) {
+                if (bookChoice >= 1 && bookChoice <= 20) {
+                    if (bookList[bookChoice - 1].isCheckedOut() == true) {
+                        System.out.println("Sorry, that book is already checked out.");
+                    }
+                    else {
                         System.out.println("Enter your Name:");
                         String name = read.next();
                         bookList[bookChoice - 1].checkOutBook(name);
+                        System.out.println("Enjoy " + bookList[bookChoice - 1].getTitle() + ", " + name + "!");
                     }
-                    else if (homeScreen == 2){
-                        //show books that are checked out
-                        else if (homeScreen == 2) {
-                            // Show the checked out books
-                        for (int i = 0; i < bookList.length; i++) {
-                        if (bookList[i].isCheckedOut() == true) {
+                }
+            }   // this closes if (homeScreen == 1)
+
+            if (homeScreen == 2) {
+                //show that books are checked out
+                for (int i = 0; i < bookList.length; i++) {
+                    if (bookList[i].isCheckedOut() == true) {
                         System.out.println(bookList[i].getId() + " " + bookList[i].getIsbn() + " " + bookList[i].getTitle() + " " + bookList[i].getCheckedOutTo());
                     }
                 }
+
+                System.out.println("C to check in a book, X to go back");
+                String checkInChoice = read.next();
+
+                if (checkInChoice.equalsIgnoreCase("C")) {
+                    System.out.println("Enter the id of the book to check in:");
+                    int checkInId = read.nextInt();
+
+                    if (checkInId >= 1 && checkInId <= 20 && bookList[checkInId - 1].isCheckedOut() == true) {
+                        bookList[checkInId - 1].checkIn();
+                        System.out.println("Book checked in. Thanks!");
+                    }
+                    else {
+                        System.out.println("That book isn't checked out.");
+                    }
+                }
+            }   // this closes if (homeScreen == 2)
+
+        } while (homeScreen != 3);   // closes the do and ends the loop
+
+    }   // closes main
+}       // closes Main
